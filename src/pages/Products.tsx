@@ -1,110 +1,9 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download, Filter, CheckCircle } from 'lucide-react';
+import { ArrowRight, Download, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Layout } from '@/components/layout/Layout';
 import { useState } from 'react';
-
-import heroProduct from '@/assets/hero-product.jpg';
-import ceilingApplication from '@/assets/ceiling-application.jpg';
-import constructionSite from '@/assets/construction-site.jpg';
-import gypsumBoards from '@/assets/gypsum-boards.jpg';
-import htcGypsumPlaster from '@/assets/htc-gypsum-plaster.png';
-
-const products = [
-  {
-    id: 'elite-plaster',
-    name: 'GypsumPro Elite Plaster',
-    category: 'Plaster',
-    description: 'Premium machine-applied gypsum plaster for large-scale projects with superior coverage.',
-    image: htcGypsumPlaster,
-    specs: { 
-      coverage: '18-20 m²/25kg', 
-      setting: '45-60 min', 
-      thickness: '10-15mm',
-      application: 'Machine/Manual'
-    },
-    tags: ['Best Seller', 'High Coverage'],
-    applications: ['Walls', 'Ceilings'],
-  },
-  {
-    id: 'standard-board',
-    name: 'GypsumPro Standard Board',
-    category: 'Boards',
-    description: 'Fire-resistant gypsum board for ceilings and partitions in commercial and residential buildings.',
-    image: gypsumBoards,
-    specs: { 
-      size: '1200x2400mm', 
-      thickness: '12.5mm', 
-      fire: '2 hr rating',
-      weight: '8.5 kg/m²'
-    },
-    tags: ['Fire Rated', 'Standard'],
-    applications: ['Ceilings', 'Partitions'],
-  },
-  {
-    id: 'finish-coat',
-    name: 'GypsumPro Finish Coat',
-    category: 'Plaster',
-    description: 'Smooth finishing compound for flawless wall surfaces that are ready for painting.',
-    image: ceilingApplication,
-    specs: { 
-      coverage: '25-30 m²/25kg', 
-      setting: '30-45 min', 
-      application: 'Manual',
-      finish: 'Ultra Smooth'
-    },
-    tags: ['Premium', 'Finishing'],
-    applications: ['Walls'],
-  },
-  {
-    id: 'partition-board',
-    name: 'GypsumPro Partition Board',
-    category: 'Boards',
-    description: 'High-strength drywall system for commercial interiors with excellent acoustic properties.',
-    image: constructionSite,
-    specs: { 
-      size: '1200x3000mm', 
-      thickness: '15mm', 
-      acoustic: '45 STC',
-      fire: '1 hr rating'
-    },
-    tags: ['Acoustic', 'High Strength'],
-    applications: ['Partitions'],
-  },
-  {
-    id: 'moisture-board',
-    name: 'GypsumPro Moisture Board',
-    category: 'Boards',
-    description: 'Water-resistant gypsum board ideal for bathrooms, kitchens, and humid environments.',
-    image: gypsumBoards,
-    specs: { 
-      size: '1200x2400mm', 
-      thickness: '12.5mm', 
-      moisture: '< 5%',
-      core: 'Green'
-    },
-    tags: ['Moisture Resistant', 'Special'],
-    applications: ['Walls', 'Ceilings'],
-  },
-  {
-    id: 'base-coat',
-    name: 'GypsumPro Base Coat',
-    category: 'Plaster',
-    description: 'High-adhesion base coat for preparing surfaces before finish plaster application.',
-    image: heroProduct,
-    specs: { 
-      coverage: '15-18 m²/25kg', 
-      setting: '60-90 min', 
-      thickness: '8-12mm',
-      adhesion: 'High'
-    },
-    tags: ['Base Layer', 'High Adhesion'],
-    applications: ['Walls'],
-  },
-];
-
-const categories = ['All', 'Plaster', 'Boards'];
-const applications = ['All', 'Walls', 'Ceilings', 'Partitions'];
+import { products, categories, applicationTypes } from '@/data/products';
 
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -159,7 +58,7 @@ export default function Products() {
             <div className="w-px h-6 bg-border hidden sm:block" />
 
             <div className="flex flex-wrap gap-2">
-              {applications.map(app => (
+              {applicationTypes.map(app => (
                 <button
                   key={app}
                   onClick={() => setSelectedApplication(app)}
@@ -186,32 +85,36 @@ export default function Products() {
                 key={product.id}
                 className="bg-card rounded-xl border border-border overflow-hidden card-hover group"
               >
-                <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute top-3 left-3 flex flex-wrap gap-2">
-                    {product.tags.map(tag => (
-                      <span 
-                        key={tag}
-                        className="bg-accent text-accent-foreground text-xs font-semibold px-2 py-1 rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                <Link to={`/products/${product.id}`}>
+                  <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute top-3 left-3 flex flex-wrap gap-2">
+                      {product.tags.map(tag => (
+                        <span 
+                          key={tag}
+                          className="bg-accent text-accent-foreground text-xs font-semibold px-2 py-1 rounded"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </Link>
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xs font-medium text-accent bg-accent/10 px-2 py-0.5 rounded">
                       {product.category}
                     </span>
                   </div>
-                  <h3 className="font-heading font-semibold text-primary mb-2 text-lg">
-                    {product.name}
-                  </h3>
+                  <Link to={`/products/${product.id}`}>
+                    <h3 className="font-heading font-semibold text-primary mb-2 text-lg hover:text-accent transition-colors">
+                      {product.name}
+                    </h3>
+                  </Link>
                   <p className="text-muted-foreground text-sm mb-4">
                     {product.description}
                   </p>
@@ -227,10 +130,11 @@ export default function Products() {
                   </div>
 
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="flex-1">
-                      <Download size={14} />
-                      Spec Sheet
-                    </Button>
+                    <Link to={`/products/${product.id}`} className="flex-1">
+                      <Button variant="outline" size="sm" className="w-full">
+                        View Details
+                      </Button>
+                    </Link>
                     <Link to="/contact" className="flex-1">
                       <Button variant="cta" size="sm" className="w-full">
                         Get Quote
