@@ -8,6 +8,7 @@ import heroProduct from '@/assets/hero-product.jpg';
 import ceilingApplication from '@/assets/ceiling-application.jpg';
 import constructionSite from '@/assets/construction-site.jpg';
 import gypsumBoards from '@/assets/gypsum-boards.jpg';
+import htcGypsumPlaster from '@/assets/htc-gypsum-plaster.png';
 
 const products = [
   {
@@ -15,7 +16,7 @@ const products = [
     name: 'GypsumPro Elite Plaster',
     category: 'Plaster',
     description: 'Premium machine-applied gypsum plaster for large-scale projects with superior coverage.',
-    image: heroProduct,
+    image: htcGypsumPlaster,
     specs: { 
       coverage: '18-20 m²/25kg', 
       setting: '45-60 min', 
