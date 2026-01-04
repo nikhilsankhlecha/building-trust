@@ -209,10 +209,12 @@ export default function ProductDetail() {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <Button variant="outline" size="lg">
-              <Download size={18} />
-              Download Full Technical Data Sheet (PDF)
-            </Button>
+            <a href="/documents/technical-data-sheet.pdf" download target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg">
+                <Download size={18} />
+                Download Full Technical Data Sheet (PDF)
+              </Button>
+            </a>
           </div>
         </div>
       </section>
