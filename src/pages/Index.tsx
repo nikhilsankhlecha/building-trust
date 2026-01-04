@@ -169,7 +169,7 @@ const Index = () => {
               <div className="relative z-10">
                 <img src={ceilingApplication} alt="Premium gypsum plastered interior" className="rounded-2xl shadow-elevated w-full object-cover aspect-square" />
                 <div className="absolute -bottom-6 -left-6 bg-card p-4 rounded-xl shadow-card border border-border">
-                  <img alt="GypsumPro product bag" className="w-32 h-40 object-cover rounded-lg" src="/lovable-uploads/2f086862-14bc-4da8-867f-26bdeb18378c.png" />
+                  <img alt="GypsumPro product bag" className="w-32 h-40 object-cover rounded-lg" src="/lovable-uploads/ed0b2e53-d0a4-4f9f-a142-536e1bbd9d9d.png" />
                 </div>
               </div>
               {/* Decorative Elements */}
